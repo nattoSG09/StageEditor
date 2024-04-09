@@ -12,6 +12,7 @@ class StageObjectComponent;
 enum ComponentType {
 	COMP_TESTMOVE,
 	COMP_INPUTMOVE,
+	COMP_GRAVITY,
 	COMP_MAX
 };
 

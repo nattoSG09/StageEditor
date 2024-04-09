@@ -79,38 +79,41 @@ void Player::Update()
 	}
 	
 	// 接地処理
-	{
-		// ステージの情報を取得する
-		Stage* pStage = (Stage*)FindObject("Stage");
-		
-		// レイキャストデータの初期化
-		RayCastData playerToStageRay; {
-			playerToStageRay.start = transform_.position_;
-			playerToStageRay.dir = XMFLOAT3(0, -1, 0);
-		}
-
-		// ステージのオブジェクトすべてに対してあたり判定を行う
-		for (auto obj : pStage->GetObjects()) {
-
-			// レイキャストを下方向に放つ
-			Model::RayCast(obj->GetModelHandle(), &playerToStageRay);
-
-			// レイキャストが一度でもヒットしたら位置の修正を行う
-			ImGui::Text("%s.hit = %s,dist = %f",obj->GetObjectName().c_str(), playerToStageRay.hit ? "true" : "false",playerToStageRay.dist);
-			
-			playerToStageRay.hit = false;
-			playerToStageRay.dist = 99999;
-		}
+	//{
+	//	// ステージの情報を取得する
+	//	Stage* pStage = (Stage*)FindObject("Stage");
+	//	
+	//	
+	//	vector<StageObject*> objects = pStage->GetObjects();
 
 
-		//// ヒットしたレイキャストの長さが0以下なら…
-		//if (playerToStageRay.dist <= 0) {
-		//	Move(XMLoadFloat3(&playerToStageRay.dir), playerToStageRay.dist);
-		//}
 
-		
+	//	// ステージのオブジェクトすべてに対してあたり判定を行う
+	//	RayCastData playerToStageRay;
+	//	for (auto obj : objects) {
 
-	}
+	//		// レイキャストデータの初期化
+	//		RayCastData tmp; {
+	//			tmp.start = transform_.position_;
+	//			tmp.dir = XMFLOAT3(0, -1, 0);
+	//		}
+
+	//		// レイキャストを下方向に放つ
+	//		Model::RayCast(obj->GetModelHandle(), &tmp);
+	//		ImGui::Text("%s.hit = %s,dist = %f",obj->GetObjectName().c_str(), tmp.hit ? "true" : "false",playerToStageRay.dist);
+
+	//		// レイキャストが一度でもヒットしたらレイキャストを打つのをやめる
+	//		if (tmp.hit == true) { 
+	//			playerToStageRay = tmp;break; 
+	//		}
+	//	}
+	//	
+	//	// 
+	//	if (playerToStageRay.dist >= 0.1f) {
+	//		Move(XMLoadFloat3(&playerToStageRay.dir), playerToStageRay.dist);
+	//	}
+
+	//}
 
 }
 

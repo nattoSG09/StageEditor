@@ -572,9 +572,7 @@ bool FbxParts::GetBonePosition(std::string boneName, XMFLOAT3 * position)
 
 			return true;
 		}
-
 	}
-
 	return false;
 }
 

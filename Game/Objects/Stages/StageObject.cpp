@@ -8,6 +8,7 @@ const string ComponentTypeToString(ComponentType type)
 	{
 	case COMP_TESTMOVE: return "TestMove";
 	case COMP_INPUTMOVE: return "InputMove";
+	case COMP_GRAVITY: return "Gravity";
 	}
 
 	return "none";

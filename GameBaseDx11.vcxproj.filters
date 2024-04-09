@@ -42,14 +42,14 @@
     <Filter Include="Game\Objects\SkySphere">
       <UniqueIdentifier>{6768a44c-bef0-49fa-9154-2b30176048d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Cameras">
-      <UniqueIdentifier>{bc65668f-bf10-43f9-9576-ca0ce9cad130}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Objects\Stages\Components">
       <UniqueIdentifier>{8fe08604-6597-49ba-90dd-c4db468dd2b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Objects\Player">
       <UniqueIdentifier>{9c288515-9246-4b19-a4e4-147d7f4c84c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Objects\Stages\Components\Cameras">
+      <UniqueIdentifier>{bc65668f-bf10-43f9-9576-ca0ce9cad130}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,7 @@
       <Filter>Game\Objects\SkySphere</Filter>
     </ClCompile>
     <ClCompile Include="Game\Cameras\DebugCamera.cpp">
-      <Filter>Game\Cameras</Filter>
+      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Components\StageObjectComponent.cpp">
       <Filter>Game\Objects\Stages\Components</Filter>
@@ -166,10 +166,13 @@
       <Filter>Game\Objects\Stages\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Cameras\TPSCamera.cpp">
-      <Filter>Game\Cameras</Filter>
+      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Player\Player.cpp">
       <Filter>Game\Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\Stages\Components\Gravity.cpp">
+      <Filter>Game\Objects\Stages\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,7 +286,7 @@
       <Filter>Game\Objects\SkySphere</Filter>
     </ClInclude>
     <ClInclude Include="Game\Cameras\DebugCamera.h">
-      <Filter>Game\Cameras</Filter>
+      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Components\TestMove.h">
       <Filter>Game\Objects\Stages\Components</Filter>
@@ -295,10 +298,13 @@
       <Filter>Game\Objects\Stages\Components</Filter>
     </ClInclude>
     <ClInclude Include="Game\Cameras\TPSCamera.h">
-      <Filter>Game\Cameras</Filter>
+      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Player\Player.h">
       <Filter>Game\Objects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\Stages\Components\Gravity.h">
+      <Filter>Game\Objects\Stages\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

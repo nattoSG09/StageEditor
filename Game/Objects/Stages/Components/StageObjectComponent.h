@@ -13,5 +13,6 @@ public:
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;
 	virtual json Save() = 0;
+	virtual void DrawDatails(){}
 };
 

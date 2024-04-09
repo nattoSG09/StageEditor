@@ -3,6 +3,7 @@
 #include "StageObject.h"
 #include "Components/TestMove.h"
 #include "Components/InputMove.h"
+#include "Components/Gravity.h"
 
 #include "../../../Engine/ImGui/imgui.h"
 #include "../../../Engine/DirectX/Direct3D.h"
@@ -326,7 +327,8 @@ void Stage::DrawDatails()
 							switch (selectedComponentType_)
 							{
 							case COMP_TESTMOVE:objects_[selectedIndex_]->AddComponent(new TestMove(objects_[selectedIndex_])); break;
-							case COMP_INPUTMOVE:objects_[selectedIndex_]->AddComponent(new InputMove(objects_[selectedIndex_]));break;
+							case COMP_INPUTMOVE:objects_[selectedIndex_]->AddComponent(new InputMove(objects_[selectedIndex_])); break;
+							case COMP_GRAVITY:objects_[selectedIndex_]->AddComponent(new Gravity(objects_[selectedIndex_]));break;
 							case COMP_MAX:
 								break;
 							}
@@ -346,6 +348,9 @@ void Stage::DrawDatails()
 							if (ImGui::Button("delete")) {
 								objects_[selectedIndex_]->DeleteComponent(comp);
 							}
+
+							comp->DrawDatails();
+
 							ImGui::TreePop();
 						}
 					}
@@ -468,6 +473,9 @@ bool Stage::Load(string filePath)
 			case COMP_INPUTMOVE:
 				comp = new InputMove(obj);
 				break;
+			case COMP_GRAVITY:
+				comp = new Gravity(obj);
+
 			default:
 				// 未知のコンポーネントタイプ
 				break;
