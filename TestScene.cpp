@@ -38,6 +38,7 @@ void TestScene::Initialize()
 	pTpsCamera->SetTarget(pPlayer);
 #endif // _DEBUG
 
+
 }
 
 //XV
