@@ -344,13 +344,14 @@ void Stage::DrawDatails()
 				if (ImGui::TreeNode("ComponentList")) {
 					for (auto comp : objects_[selectedIndex_]->components_)
 					{
+
 						if (ImGui::TreeNode(comp->name_.c_str())) {
-							if (ImGui::Button("delete")) {
-								objects_[selectedIndex_]->DeleteComponent(comp);
-							}
 
 							comp->DrawDatails();
 
+							if (ImGui::Button("delete")) {
+								objects_[selectedIndex_]->DeleteComponent(comp);
+							}
 							ImGui::TreePop();
 						}
 					}
