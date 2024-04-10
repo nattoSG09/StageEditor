@@ -26,7 +26,10 @@ void Player::Update()
 	// 移動処理
 	{
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
-		float angle = cam->GetAngle().y;
+		
+		float angle = 0;
+		if(cam != nullptr)cam->GetAngle().y;
+
 		// 方向を設定
 		XMVECTOR dir{}; {
 			// 視線ベクトルを取得
@@ -79,42 +82,46 @@ void Player::Update()
 	}
 	
 	// 接地処理
-	//{
-	//	// ステージの情報を取得する
-	//	Stage* pStage = (Stage*)FindObject("Stage");
-	//	
-	//	
-	//	vector<StageObject*> objects = pStage->GetObjects();
+	{
+		// ステージの情報を取得する
+		Stage* pStage = (Stage*)FindObject("Stage");
+		if (pStage == nullptr)return;
+		vector<StageObject*> objects = pStage->GetObjects();
 
+		vector<RayCastData> hitRays;
 
+		// ステージのオブジェクトすべてに対してあたり判定を行う
+		for (auto obj : objects) {
 
-	//	// ステージのオブジェクトすべてに対してあたり判定を行う
-	//	RayCastData playerToStageRay;
-	//	for (auto obj : objects) {
+			// レイキャストデータの初期化
+			RayCastData tmp; {
+				tmp.start = transform_.position_;
+				tmp.dir = XMFLOAT3(0, -1, 0);
+			}
 
-	//		// レイキャストデータの初期化
-	//		RayCastData tmp; {
-	//			tmp.start = transform_.position_;
-	//			tmp.dir = XMFLOAT3(0, -1, 0);
-	//		}
+			// レイキャストを下方向に放つ
+			Model::RayCast(obj->GetModelHandle(), &tmp);
+			
+			// レイキャストが一度でもヒットしたらレイキャストを打つのをやめる
+			if (tmp.hit == true) { 
+				hitRays.push_back(tmp);
+			}
+		}
+		
+		for (auto ray : hitRays) {
+			ImGui::Text("%d.\n[hit] = %s\n[dist] = %f", ray.hitModelHandle, ray.hit ? "true" : "false", ray.dist);
+		}
 
-	//		// レイキャストを下方向に放つ
-	//		Model::RayCast(obj->GetModelHandle(), &tmp);
-	//		ImGui::Text("%s.hit = %s,dist = %f",obj->GetObjectName().c_str(), tmp.hit ? "true" : "false",playerToStageRay.dist);
+		// 最小の dist を持つ要素を探す
+		if (hitRays.empty() == false) {
+			auto min = std::min_element(hitRays.begin(), hitRays.end(), [](const RayCastData& a, const RayCastData& b) {return a.dist < b.dist; });
+			RayCastData hitmin = *min;
 
-	//		// レイキャストが一度でもヒットしたらレイキャストを打つのをやめる
-	//		if (tmp.hit == true) { 
-	//			playerToStageRay = tmp;break; 
-	//		}
-	//	}
-	//	
-	//	// 
-	//	if (playerToStageRay.dist >= 0.1f) {
-	//		Move(XMLoadFloat3(&playerToStageRay.dir), playerToStageRay.dist);
-	//	}
-
-	//}
-
+			// 
+			if (hitmin.dist >= 0.1f) {
+			}
+		}
+	}
 }
 
 void Player::Draw()

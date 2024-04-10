@@ -23,15 +23,15 @@ void TestScene::Initialize()
 	// ステージを用意
 	Stage* pStage = Instantiate<Stage>(this);
 
+	// プレイヤーを用意
+	Player* pPlayer = Instantiate<Player>(this);
+	pPlayer->SetPosition(0, 10, 0);
 
 #ifdef _DEBUG
 	// debug用エディターカメラを用意
 	DebugCamera* pDebugCamera = Instantiate<DebugCamera>(this);
 	pDebugCamera->SetPosition(XMFLOAT3(20, 40, -80));
 #else
-	// プレイヤーを用意
-	Player* pPlayer = Instantiate<Player>(this);
-	pPlayer->SetPosition(0, 10, 0);
 
 	// release用プレイヤーカメラを用意
 	TPSCamera* pTpsCamera = Instantiate<TPSCamera>(this);

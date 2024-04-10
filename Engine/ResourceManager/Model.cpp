@@ -189,6 +189,7 @@ namespace Model
 
 			XMStoreFloat3(&data->start, vecStart);
 			XMStoreFloat3(&data->dir, vecDir);
+			data->hitModelHandle = handle;
 
 			_datas[handle]->pFbx->RayCast(data); 
 	}
