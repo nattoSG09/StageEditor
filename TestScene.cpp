@@ -1,12 +1,8 @@
 #include "TestScene.h"
-#include "Game/Objects/Stages/Stage.h"
-#include "Game/Objects/Stages/StageObject.h"
-#include "Game/Objects/SkySphere/SkySphere.h"
-#include "Game/Cameras/DebugCamera.h"
-#include "Game/Cameras/TPSCamera.h"
 #include "Engine/DirectX/Input.h"
-#include "Engine/GameObject/Camera.h"
-#include "Game/Objects/Player/Player.h"
+#include "Engine/ResourceManager/Model.h"
+#include "Engine/ImGui/imgui.h"
+
 
 //コンストラクタ
 TestScene::TestScene(GameObject * parent)
@@ -17,38 +13,36 @@ TestScene::TestScene(GameObject * parent)
 //初期化
 void TestScene::Initialize()
 {
-	// スカイスフィアを用意
-	SkySphere* pSkySphere = Instantiate<SkySphere>(this);
-
-	// ステージを用意
-	Stage* pStage = Instantiate<Stage>(this);
-
-	// プレイヤーを用意
-	Player* pPlayer = Instantiate<Player>(this);
-	pPlayer->SetPosition(0, 10, 0);
-
-#ifdef _DEBUG
-	// debug用エディターカメラを用意
-	DebugCamera* pDebugCamera = Instantiate<DebugCamera>(this);
-	pDebugCamera->SetPosition(XMFLOAT3(20, 40, -80));
-#else
-
-	// release用プレイヤーカメラを用意
-	TPSCamera* pTpsCamera = Instantiate<TPSCamera>(this);
-	pTpsCamera->SetTarget(pPlayer);
-#endif // _DEBUG
-
-
+	hModel = Model::Load("Model/Player/Walking.fbx");
+	
 }
 
 //更新
 void TestScene::Update()
 {
+	// ワールド座標によって変換されてるか確認用
+	ImGui::SliderFloat("x", &transform_.position_.x, -10, 10);
+
+	int i = 0;
+	// 頂点座標のローカル座標を取得
+	vs_ = Model::GetVertices(hModel);
+	for (auto v : vs_) {
+		// ワールド行列で変換
+		XMVECTOR vecPosition = XMVector3Transform(XMLoadFloat3(&v), transform_.GetWorldMatrix());
+		XMStoreFloat3(&v, vecPosition);
+		ImGui::Text("vPos[%d] = %f,%f,%f",i, v.x, v.y, v.z);
+		i++;
+	}
+
+	// インデックス情報を取得
+
 }
 
 //描画
 void TestScene::Draw()
 {
+	Model::SetTransform(hModel, transform_);
+	Model::Draw(hModel);
 }
 
 //開放

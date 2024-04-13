@@ -24,32 +24,35 @@
       <UniqueIdentifier>{47a6a3f5-8cfd-436b-8d58-beccd108f3f3}</UniqueIdentifier>
       <Extensions>hlsl</Extensions>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{b5c21c3c-2599-4f41-aea8-3e6a7d2ac8bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Objects">
-      <UniqueIdentifier>{e0be0c52-3f2d-4312-9324-42cd069551a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Objects\Stages">
-      <UniqueIdentifier>{1a334176-a9c9-491e-b837-f081146ba847}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01Engine\ImGui">
       <UniqueIdentifier>{67a1c9fe-02dc-42a0-859c-9ea16699b467}</UniqueIdentifier>
     </Filter>
     <Filter Include="01Engine\Json">
       <UniqueIdentifier>{963dcf9a-8692-44c1-915e-cf5b25e5656a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Objects\SkySphere">
-      <UniqueIdentifier>{6768a44c-bef0-49fa-9154-2b30176048d2}</UniqueIdentifier>
+    <Filter Include="03Game">
+      <UniqueIdentifier>{b5c21c3c-2599-4f41-aea8-3e6a7d2ac8bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Objects\Stages\Components">
+    <Filter Include="03Game\Objects">
+      <UniqueIdentifier>{e0be0c52-3f2d-4312-9324-42cd069551a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\Stages">
+      <UniqueIdentifier>{1a334176-a9c9-491e-b837-f081146ba847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\Stages\Components">
       <UniqueIdentifier>{8fe08604-6597-49ba-90dd-c4db468dd2b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Objects\Player">
+    <Filter Include="03Game\Objects\Stages\Components\Cameras">
+      <UniqueIdentifier>{bc65668f-bf10-43f9-9576-ca0ce9cad130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\SkySphere">
+      <UniqueIdentifier>{6768a44c-bef0-49fa-9154-2b30176048d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Objects\Player">
       <UniqueIdentifier>{9c288515-9246-4b19-a4e4-147d7f4c84c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Objects\Stages\Components\Cameras">
-      <UniqueIdentifier>{bc65668f-bf10-43f9-9576-ca0ce9cad130}</UniqueIdentifier>
+    <Filter Include="04Test">
+      <UniqueIdentifier>{6f3dd5ed-d202-43cb-8db1-fd98ee7a83e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,10 +127,10 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Stage.cpp">
-      <Filter>Game\Objects\Stages</Filter>
+      <Filter>03Game\Objects\Stages</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\StageObject.cpp">
-      <Filter>Game\Objects\Stages</Filter>
+      <Filter>03Game\Objects\Stages</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Json\JsonReader.cpp">
       <Filter>01Engine\Json</Filter>
@@ -151,29 +154,30 @@
       <Filter>01Engine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\SkySphere\SkySphere.cpp">
-      <Filter>Game\Objects\SkySphere</Filter>
+      <Filter>03Game\Objects\SkySphere</Filter>
     </ClCompile>
     <ClCompile Include="Game\Cameras\DebugCamera.cpp">
-      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
+      <Filter>03Game\Objects\Stages\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Components\StageObjectComponent.cpp">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Components\TestMove.cpp">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Components\InputMove.cpp">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClCompile>
     <ClCompile Include="Game\Cameras\TPSCamera.cpp">
-      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
+      <Filter>03Game\Objects\Stages\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Player\Player.cpp">
-      <Filter>Game\Objects\Player</Filter>
+      <Filter>03Game\Objects\Player</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\Stages\Components\Gravity.cpp">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClCompile>
+    <ClCompile Include="StageColision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Collider\BoxCollider.h">
@@ -247,10 +251,10 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Stage.h">
-      <Filter>Game\Objects\Stages</Filter>
+      <Filter>03Game\Objects\Stages</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\StageObject.h">
-      <Filter>Game\Objects\Stages</Filter>
+      <Filter>03Game\Objects\Stages</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Json\json.hpp">
       <Filter>01Engine\Json</Filter>
@@ -283,29 +287,30 @@
       <Filter>01Engine\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\SkySphere\SkySphere.h">
-      <Filter>Game\Objects\SkySphere</Filter>
+      <Filter>03Game\Objects\SkySphere</Filter>
     </ClInclude>
     <ClInclude Include="Game\Cameras\DebugCamera.h">
-      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
+      <Filter>03Game\Objects\Stages\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Components\TestMove.h">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Components\StageObjectComponent.h">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Components\InputMove.h">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClInclude>
     <ClInclude Include="Game\Cameras\TPSCamera.h">
-      <Filter>Game\Objects\Stages\Components\Cameras</Filter>
+      <Filter>03Game\Objects\Stages\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Player\Player.h">
-      <Filter>Game\Objects\Player</Filter>
+      <Filter>03Game\Objects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\Stages\Components\Gravity.h">
-      <Filter>Game\Objects\Stages\Components</Filter>
+      <Filter>03Game\Objects\Stages\Components</Filter>
     </ClInclude>
+    <ClInclude Include="StageColision.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

@@ -118,6 +118,18 @@ XMFLOAT3 Fbx::GetBonePosition(std::string boneName)
 	return position;
 }
 
+std::vector<XMFLOAT3> Fbx::GetVertices()
+{
+	std::vector<XMFLOAT3> vertices;
+	for (auto part : parts_) {
+		for (int i = 0; i < part->GetVertexNum(); ++i) {
+			// ’¸“_‚ÌˆÊ’u‚ðŽæ“¾
+			vertices.push_back(part->GetVertices()[i].position);
+		}
+	}
+	return vertices;
+}
+
 void Fbx::Draw(Transform& transform, int frame)
 {
 	Direct3D::SetBlendMode(Direct3D::BLEND_DEFAULT);

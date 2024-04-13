@@ -5,6 +5,7 @@
 #include <string>
 #include "../DirectX/Fbx.h"
 #include "../GameObject/Transform.h"
+#include "../DirectX/FbxParts.h"
 
 //-----------------------------------------------------------
 //3Dモデル（FBXファイル）を管理する
@@ -94,6 +95,7 @@ namespace Model
 	//戻値：ワールド行列
 	XMMATRIX GetMatrix(int handle);
 
+	std::vector<XMFLOAT3> GetVertices(int handle);
 
 	//レイキャスト（レイを飛ばして当たり判定）　※未実装
 	//引数：handle	判定したいモデルの番号

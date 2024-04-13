@@ -1,9 +1,12 @@
 #pragma once
 #include "Engine/GameObject/GameObject.h"
+#include <vector>
 
 //テストシーンを管理するクラス
 class TestScene : public GameObject
 {
+	int hModel;
+	std::vector<XMFLOAT3> vs_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

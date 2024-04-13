@@ -146,6 +146,9 @@ public:
 	//戻値：スキンメッシュ情報
 	FbxSkin* GetSkinInfo() { return pSkinInfo_; }
 
+	VERTEX* GetVertices() { return pVertexData_; }
+	int GetVertexNum() { return vertexCount_; }
+
 	//レイキャスト（レイを飛ばして当たり判定）
 	//引数：data	必要なものをまとめたデータ
 	void RayCast(RayCastData *data);

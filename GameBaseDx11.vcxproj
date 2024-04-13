@@ -164,6 +164,7 @@
     <ClCompile Include="Game\Objects\Stages\Components\InputMove.cpp" />
     <ClCompile Include="Game\Objects\Player\Player.cpp" />
     <ClCompile Include="Game\Objects\Stages\Components\Gravity.cpp" />
+    <ClCompile Include="StageColision.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Game\Cameras\TPSCamera.cpp" />
   </ItemGroup>
@@ -210,6 +211,7 @@
     <ClInclude Include="Game\Objects\Stages\Components\InputMove.h" />
     <ClInclude Include="Game\Objects\Player\Player.h" />
     <ClInclude Include="Game\Objects\Stages\Components\Gravity.h" />
+    <ClInclude Include="StageColision.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Game\Cameras\TPSCamera.h" />
   </ItemGroup>
