@@ -120,7 +120,6 @@ public:
 	//戻値：結果
 	HRESULT Init(FbxNode * pNode);
 
-
 	//描画
 	//引数：world	ワールド行列
 	void Draw(Transform& transform);
@@ -146,8 +145,17 @@ public:
 	//戻値：スキンメッシュ情報
 	FbxSkin* GetSkinInfo() { return pSkinInfo_; }
 
+	//すべての頂点情報を取得
+	//戻値：すべての頂点情報
 	VERTEX* GetVertices() { return pVertexData_; }
+
+	//頂点の個数を取得
+	//戻値：頂点数
 	int GetVertexNum() { return vertexCount_; }
+
+	//すべてのインデックス情報を取得
+	//戻値：すべてのインデックス情報
+	DWORD** GetIndices() { return ppIndexData_; }
 
 	//レイキャスト（レイを飛ばして当たり判定）
 	//引数：data	必要なものをまとめたデータ

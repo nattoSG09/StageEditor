@@ -130,6 +130,16 @@ std::vector<XMFLOAT3> Fbx::GetVertices()
 	return vertices;
 }
 
+std::vector<int> Fbx::GetIndices()
+{
+	std::vector<int*> indices;
+	for (auto part : parts_) {
+		/*for (int i = 0; i < part->GetIndexNum(); ++i) {
+			indices.push_back(part->GetIndices()[i]);
+		}*/
+	}
+}
+
 void Fbx::Draw(Transform& transform, int frame)
 {
 	Direct3D::SetBlendMode(Direct3D::BLEND_DEFAULT);

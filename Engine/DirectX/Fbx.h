@@ -84,7 +84,13 @@ public:
 	//戻値：ボーンの位置
 	XMFLOAT3 GetBonePosition(std::string boneName);
 
+	//すべての頂点情報を取得
+	//戻値：頂点情報
 	std::vector<XMFLOAT3> GetVertices();
+
+	//すべてのインデックス情報を取得
+	//戻値：インデックス
+	std::vector<int> GetIndices();
 
 	//レイキャスト（レイを飛ばして当たり判定）
 	//引数：data	必要なものをまとめたデータ

@@ -95,7 +95,15 @@ namespace Model
 	//戻値：ワールド行列
 	XMMATRIX GetMatrix(int handle);
 
+	//頂点情報の取得
+	//引数：handle　知りたいモデルの番号
+	//戻値：頂点情報
 	std::vector<XMFLOAT3> GetVertices(int handle);
+
+	//インデックス情報の取得
+	//引数：handle　知りたいモデルの番号
+	//戻値：インデックス情報
+	std::vector<int> GetIndices(int handle);
 
 	//レイキャスト（レイを飛ばして当たり判定）　※未実装
 	//引数：handle	判定したいモデルの番号
