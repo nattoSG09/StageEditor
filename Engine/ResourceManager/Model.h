@@ -105,6 +105,11 @@ namespace Model
 	//戻値：インデックス情報
 	std::vector<int> GetIndices(int handle);
 
+	//インデックスの個数を取得
+	//引数：handle　知りたいモデルの番号
+	//戻値：インデックス数
+	int GetIndexNum(int handle);
+
 	//レイキャスト（レイを飛ばして当たり判定）　※未実装
 	//引数：handle	判定したいモデルの番号
 	//引数：data	必要なものをまとめたデータ

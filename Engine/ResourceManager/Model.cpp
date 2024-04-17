@@ -187,6 +187,11 @@ namespace Model
 		return _datas[handle]->pFbx->GetIndices();
 	}
 
+	int GetIndexNum(int handle)
+	{
+		return _datas[handle]->pFbx->GetIndexNum();
+	}
+
 
 	//レイキャスト（レイを飛ばして当たり判定）
 	void RayCast(int handle, RayCastData *data)

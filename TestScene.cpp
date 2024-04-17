@@ -35,7 +35,7 @@ void TestScene::Update()
 	}
 
 	// インデックス情報を取得
-	
+	int indexNum = Model::GetIndexNum(hModel);
 
 	// 三角形を作成
 }

@@ -138,6 +138,16 @@ std::vector<int> Fbx::GetIndices()
 			indices.push_back(part->GetIndices()[i]);
 		}*/
 	}
+	return std::vector<int>();
+}
+
+int Fbx::GetIndexNum()
+{
+	int indexNum = 0;
+	for (auto part : parts_) {
+		indexNum += part->GetIndexNum();
+	}
+	return indexNum;
 }
 
 void Fbx::Draw(Transform& transform, int frame)

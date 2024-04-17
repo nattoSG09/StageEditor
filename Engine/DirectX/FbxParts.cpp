@@ -212,8 +212,6 @@ void FbxParts::InitIndex(fbxsdk::FbxMesh * mesh)
 	ppIndexBuffer_ = new ID3D11Buffer*[materialCount_];
 	ppIndexData_ = new DWORD*[materialCount_];
 
-	
-
 	int count = 0;
 
 	// マテリアルから「ポリゴン平面」の情報を抽出する
@@ -262,6 +260,7 @@ void FbxParts::InitIndex(fbxsdk::FbxMesh * mesh)
 		SAFE_DELETE_ARRAY(pIndex);
 	}
 
+	indexCount_ = count;
 }
 
 //骨の情報を準備
