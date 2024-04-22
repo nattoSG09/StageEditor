@@ -23,6 +23,28 @@ void Player::Update()
 	// アニメーションを行うかどうか
 	bool isAnim = false;
 
+	// コントローラーでの移動処理
+	{
+		// カメラの視線ベクトルを取得
+		XMVECTOR sightLine =XMVectorSetY(Camera::GetSightline(),0);
+
+		// コントローラーの情報を取得
+		XMFLOAT3 padStickL = Input::GetPadStickL();
+
+		// 方向を設定
+		XMVECTOR dir = XMVector3Normalize(XMVectorSet(padStickL.x,0,-padStickL.y,0));
+		dir = XMVector3Normalize(XMVector3Rotate(dir, sightLine));
+
+		// 速度を設定
+		float speed = 0.1f;
+
+		ImGui::Text("sightLine = %f,%f,%f", XMVectorGetX(sightLine), XMVectorGetY(sightLine), XMVectorGetZ(sightLine));
+		ImGui::Text("dir = %f,%f,%f", XMVectorGetX(dir), XMVectorGetY(dir), XMVectorGetZ(dir));
+
+		// 移動
+		Move(dir, speed);
+	}
+
 	// 移動処理
 	{
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
@@ -41,16 +63,19 @@ void Player::Update()
 				transform_.rotate_.y = angle - 25;
 
 			}
+
 			// 後方に移動
 			if (Input::IsKey(DIK_S)) {
 				dir += -sightline; isAnim = true;
 				transform_.rotate_.y = (angle - 25) + 180;
 			}
+
 			// 左方に移動
 			if (Input::IsKey(DIK_A)) {
 				dir += XMVector3Transform(sightline, XMMatrixRotationY(XMConvertToRadians(-90))); isAnim = true;
 				transform_.rotate_.y = (angle - 25) - 90;
 			}
+
 			// 右方に移動
 			if (Input::IsKey(DIK_D)) {
 				dir += XMVector3Transform(sightline, XMMatrixRotationY(XMConvertToRadians(90))); isAnim = true;
