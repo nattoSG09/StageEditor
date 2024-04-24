@@ -46,7 +46,7 @@ Stage::Stage(GameObject* parent)
 void Stage::Initialize()
 {
 #ifndef _DEBUG
-	this->Load("Data/PratformerKit_Stage_01.json");
+	this->Load("Data/TestStage.json");
 #endif // !_DEBUG
 }
 
@@ -285,23 +285,23 @@ void Stage::DrawDatails()
 			// - transform --------------------------------------------------
 			if (ImGui::TreeNode("Transform")) {
 				if (ImGui::TreeNode("position_")) {
-					ImGui::InputFloat("x", &objects_[selectedIndex_]->transform_.position_.x);
-					ImGui::InputFloat("y", &objects_[selectedIndex_]->transform_.position_.y);
-					ImGui::InputFloat("z", &objects_[selectedIndex_]->transform_.position_.z);
+					ImGui::DragFloat("x", &objects_[selectedIndex_]->transform_.position_.x);
+					ImGui::DragFloat("y", &objects_[selectedIndex_]->transform_.position_.y);
+					ImGui::DragFloat("z", &objects_[selectedIndex_]->transform_.position_.z);
 					ImGui::TreePop();
 				}
 
 				if (ImGui::TreeNode("rotate_")) {
-					ImGui::InputFloat("x", &objects_[selectedIndex_]->transform_.rotate_.x);
-					ImGui::InputFloat("y", &objects_[selectedIndex_]->transform_.rotate_.y);
-					ImGui::InputFloat("z", &objects_[selectedIndex_]->transform_.rotate_.z);
+					ImGui::DragFloat("x", &objects_[selectedIndex_]->transform_.rotate_.x);
+					ImGui::DragFloat("y", &objects_[selectedIndex_]->transform_.rotate_.y);
+					ImGui::DragFloat("z", &objects_[selectedIndex_]->transform_.rotate_.z);
 					ImGui::TreePop();
 				}
 
 				if (ImGui::TreeNode("scale_")) {
-					ImGui::InputFloat("x", &objects_[selectedIndex_]->transform_.scale_.x);
-					ImGui::InputFloat("y", &objects_[selectedIndex_]->transform_.scale_.y);
-					ImGui::InputFloat("z", &objects_[selectedIndex_]->transform_.scale_.z);
+					ImGui::DragFloat("x", &objects_[selectedIndex_]->transform_.scale_.x);
+					ImGui::DragFloat("y", &objects_[selectedIndex_]->transform_.scale_.y);
+					ImGui::DragFloat("z", &objects_[selectedIndex_]->transform_.scale_.z);
 					ImGui::TreePop();
 				}
 				ImGui::TreePop();

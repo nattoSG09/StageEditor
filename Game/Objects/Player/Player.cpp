@@ -26,9 +26,8 @@ void Player::Update()
 	// ˆÚ“®ˆ—
 	{
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
-		
-		float angle = 0;
-		if(cam != nullptr)cam->GetAngle().y;
+		float angle = cam->GetAngle().y;
+
 
 		// •ûŒü‚ğİ’è
 		XMVECTOR dir{}; {
