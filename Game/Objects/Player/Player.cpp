@@ -79,48 +79,7 @@ void Player::Update()
 			prevAnim = false;
 		}
 	}
-	
-	// 接地処理
-	{
-		// ステージの情報を取得する
-		Stage* pStage = (Stage*)FindObject("Stage");
-		if (pStage == nullptr)return;
-		vector<StageObject*> objects = pStage->GetObjects();
 
-		vector<RayCastData> hitRays;
-
-		// ステージのオブジェクトすべてに対してあたり判定を行う
-		for (auto obj : objects) {
-
-			// レイキャストデータの初期化
-			RayCastData tmp; {
-				tmp.start = transform_.position_;
-				tmp.dir = XMFLOAT3(0, -1, 0);
-			}
-
-			// レイキャストを下方向に放つ
-			Model::RayCast(obj->GetModelHandle(), &tmp);
-			
-			// レイキャストが一度でもヒットしたらレイキャストを打つのをやめる
-			if (tmp.hit == true) { 
-				hitRays.push_back(tmp);
-			}
-		}
-		
-		for (auto ray : hitRays) {
-			ImGui::Text("%d.\n[hit] = %s\n[dist] = %f", ray.hitModelHandle, ray.hit ? "true" : "false", ray.dist);
-		}
-
-		// 最小の dist を持つ要素を探す
-		if (hitRays.empty() == false) {
-			auto min = std::min_element(hitRays.begin(), hitRays.end(), [](const RayCastData& a, const RayCastData& b) {return a.dist < b.dist; });
-			RayCastData hitmin = *min;
-
-			// 
-			if (hitmin.dist >= 0.1f) {
-			}
-		}
-	}
 }
 
 void Player::Draw()

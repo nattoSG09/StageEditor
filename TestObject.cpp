@@ -1,5 +1,7 @@
 #include "TestObject.h"
 #include "Engine/ResourceManager/Model.h"
+#include "Engine/ImGui/imgui.h"
+#include "Engine/DirectX/Input.h"
 
 TestObject::TestObject(GameObject* parent)
 	:GameObject(parent,"TestObject")
@@ -11,55 +13,27 @@ void TestObject::Initialize()
 	hModel_ = Model::Load("DebugCollision/BoxCollider.fbx");
 }
 
-// 現在の角度から目標の角度までのクォータニオンを計算する関数
-XMVECTOR CalculateTargetQuaternion(float currentAngle, float targetAngle) {
-	float halfTheta = (targetAngle - currentAngle) * 0.5f;
-	XMVECTOR axis = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f); // Y軸周りの回転を想定
-	return XMQuaternionRotationAxis(axis, halfTheta);
-}
-
-// Slerpを使用してクォータニオンを補間する関数
-XMVECTOR SlerpQuaternion(XMVECTOR startQuat, XMVECTOR endQuat, float t) {
-	return XMQuaternionSlerp(startQuat, endQuat, t);
-}
-
-// クォータニオンから回転行列を計算する関数
-XMMATRIX QuaternionToMatrix(XMVECTOR quat) {
-	return XMMatrixRotationQuaternion(quat);
-}
-
 void TestObject::Update()
 {
-    static float currentAngle = 0.f;
-    float targetAngle = 90.f;
+	XMVECTOR q0 = XMLoadFloat3(&transform_.rotate_);
+	XMVECTOR q1 = XMVectorSet(0,-180,0,1);
 
-    // 目標の角度までの回転を計算
-    float rotationAmount = targetAngle - currentAngle;
+	static float t = 0;
+	ImGui::Text("t = %f", t);
 
-    // 回転する行列を作成
-    XMMATRIX rotationMatrix;
+	// 現在の方向を指すベクトル
+	XMVECTOR result = XMQuaternionSlerp(q0, q1, t);
 
-    if (rotationAmount > 0)
-    {
-        // 目標の角度が正の方向にある場合はY軸周りに回転
-        rotationMatrix = XMMatrixRotationY(XMConvertToRadians(rotationAmount));
-    }
-    else if (rotationAmount < 0)
-    {
-        // 目標の角度が負の方向にある場合はZ軸周りに回転
-        rotationMatrix = XMMatrixRotationZ(XMConvertToRadians(-rotationAmount));
-    }
-    else
-    {
-        // 目標の角度に到達している場合は回転しない
-        rotationMatrix = XMMatrixIdentity();
-    }
+	XMFLOAT3 output;
+	XMStoreFloat3(&output, result);
 
-    // オブジェクトに回転を適用
-    // ここで具体的なオブジェクトの回転処理を行う必要があります
+	ImGui::Text("result = %f,%f,%f", output.x,output.y,output.z);
+	transform_.rotate_ = output;
+	if (Input::IsKey(DIK_SPACE)) {
+		if (t <= 1)t += 0.0001f;
+	}
 
-    // 現在の角度を更新
-    currentAngle += rotationAmount;
+	
 }
 
 void TestObject::Draw()
