@@ -15,25 +15,24 @@ void TestObject::Initialize()
 
 void TestObject::Update()
 {
-	XMVECTOR q0 = XMLoadFloat3(&transform_.rotate_);
-	XMVECTOR q1 = XMVectorSet(0,-180,0,1);
+	// 現時点の回転角度
+	XMVECTOR rotate = XMLoadFloat3(&transform_.rotate_);
 
-	static float t = 0;
-	ImGui::Text("t = %f", t);
+	float t = 0.1f;
+	static float angle = 0;
 
-	// 現在の方向を指すベクトル
-	XMVECTOR result = XMQuaternionSlerp(q0, q1, t);
+	if (Input::IsKey(DIK_W)) { angle = 0.f; ImGui::Text("input key = W"); }
+	if (Input::IsKey(DIK_A)) { angle = -90.f; ImGui::Text("input key = A");}
+	if (Input::IsKey(DIK_S)) { angle = 180.f; ImGui::Text("input key = S");}
+	if (Input::IsKey(DIK_D)) { angle = 90.f; ImGui::Text("input key = D");}
+
+	XMVECTOR result = XMQuaternionSlerp(rotate, XMVectorSet(0,angle,0,1), t);
 
 	XMFLOAT3 output;
 	XMStoreFloat3(&output, result);
 
 	ImGui::Text("result = %f,%f,%f", output.x,output.y,output.z);
 	transform_.rotate_ = output;
-	if (Input::IsKey(DIK_SPACE)) {
-		if (t <= 1)t += 0.0001f;
-	}
-
-	
 }
 
 void TestObject::Draw()
