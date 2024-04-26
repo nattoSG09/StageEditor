@@ -4,6 +4,7 @@
 #include "Components/TestMove.h"
 #include "Components/InputMove.h"
 #include "Components/Gravity.h"
+#include "Components/KeyComponent.h"
 
 #include "../../../Engine/ImGui/imgui.h"
 #include "../../../Engine/DirectX/Direct3D.h"
@@ -46,7 +47,7 @@ Stage::Stage(GameObject* parent)
 void Stage::Initialize()
 {
 #ifndef _DEBUG
-	this->Load("Data/PratformerKit_Stage_01.json");
+	this->Load("Data/testop.json");
 #endif // !_DEBUG
 }
 
@@ -328,7 +329,8 @@ void Stage::DrawDatails()
 							{
 							case COMP_TESTMOVE:objects_[selectedIndex_]->AddComponent(new TestMove(objects_[selectedIndex_])); break;
 							case COMP_INPUTMOVE:objects_[selectedIndex_]->AddComponent(new InputMove(objects_[selectedIndex_])); break;
-							case COMP_GRAVITY:objects_[selectedIndex_]->AddComponent(new Gravity(objects_[selectedIndex_]));break;
+							case COMP_GRAVITY:objects_[selectedIndex_]->AddComponent(new Gravity(objects_[selectedIndex_])); break;
+							case COMP_KEY:objects_[selectedIndex_]->AddComponent(new KeyComponent(objects_[selectedIndex_]));break;
 							case COMP_MAX:
 								break;
 							}
@@ -477,6 +479,8 @@ bool Stage::Load(string filePath)
 			case COMP_GRAVITY:
 				comp = new Gravity(obj);
 
+			case COMP_KEY:
+				comp = new KeyComponent(obj);
 			default:
 				// 未知のコンポーネントタイプ
 				break;

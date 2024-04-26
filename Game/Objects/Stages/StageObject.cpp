@@ -9,6 +9,7 @@ const string ComponentTypeToString(ComponentType type)
 	case COMP_TESTMOVE: return "TestMove";
 	case COMP_INPUTMOVE: return "InputMove";
 	case COMP_GRAVITY: return "Gravity";
+	case COMP_KEY: return "Key";
 	}
 
 	return "none";
@@ -46,6 +47,11 @@ void StageObject::Draw()
 
 void StageObject::Release()
 {
+}
+
+void StageObject::OnCollision(GameObject* pTarget)
+{
+	// CollisionComponent‚ª‚Â‚¢‚Ä‚¢‚½‚ç...
 }
 
 void StageObject::Move(XMVECTOR dir,float speed)

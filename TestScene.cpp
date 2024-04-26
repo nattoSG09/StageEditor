@@ -32,13 +32,10 @@ void TestScene::Initialize()
 	DebugCamera* pDebugCamera = Instantiate<DebugCamera>(this);
 	pDebugCamera->SetPosition(XMFLOAT3(20, 40, -80));
 #else
-
 	// release用プレイヤーカメラを用意
 	TPSCamera* pTpsCamera = Instantiate<TPSCamera>(this);
 	pTpsCamera->SetTarget(pPlayer);
 #endif // _DEBUG
-
-
 }
 
 //更新

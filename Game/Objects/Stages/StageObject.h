@@ -13,6 +13,7 @@ enum ComponentType {
 	COMP_TESTMOVE,
 	COMP_INPUTMOVE,
 	COMP_GRAVITY,
+	COMP_KEY,
 	COMP_MAX
 };
 
@@ -32,11 +33,15 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Release() override;
+	void OnCollision(GameObject* pTarget) override;
+
 	void Move(XMVECTOR dir, float speed);
 
 	void AddComponent(StageObjectComponent* comp);
 	void DeleteComponent(StageObjectComponent* comp);
 	int GetModelHandle() { return modelHandle_; }
 };
+
+
 
 StageObject* CreateStageObject(string name, string modelFilePath, GameObject* parent);
