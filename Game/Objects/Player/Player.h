@@ -4,6 +4,7 @@
 class Player : public GameObject
 {
 	int modelHandle_;
+	bool hasKey_;
 public:
 	Player(GameObject* parent);
 	void Initialize() override;
@@ -11,5 +12,8 @@ public:
 	void Draw() override;
 	void Release() override;
 	void Move(XMVECTOR dir, float speed);
+
+	void GetKey() { hasKey_ = true; }
+	void LostKey() { hasKey_ = false; }
 };
 

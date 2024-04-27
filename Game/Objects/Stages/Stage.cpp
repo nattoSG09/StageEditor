@@ -487,7 +487,7 @@ bool Stage::Load(string filePath)
 			}
 
 			if (comp != nullptr) {
-				obj->components_.push_back(comp);
+				obj->AddComponent(comp);
 			}
 		}
 

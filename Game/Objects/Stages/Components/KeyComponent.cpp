@@ -1,6 +1,7 @@
 #include "KeyComponent.h"
 #include "../../../../Engine/Collider/SphereCollider.h"
 #include "../Stage.h"
+#include "../../Player/Player.h"
 
 KeyComponent::KeyComponent(StageObject* myObj)
 	:StageObjectComponent(myObj, "KeyComponent")
@@ -27,7 +28,7 @@ json KeyComponent::Save()
 void KeyComponent::OnCollision(GameObject* pTarget)
 {
     if (pTarget->GetObjectName() == "Player") {
-        int a = 0;
         ((Stage*)myObject->FindObject("Stage"))->Delete(myObject);
+        ((Player*)((Stage*)myObject->FindObject("Player")))->GetKey();
     }
 }

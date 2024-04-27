@@ -24,28 +24,6 @@ void Player::Update()
 	// アニメーションを行うかどうか
 	bool isAnim = false;
 
-	// コントローラーでの移動処理
-	{
-		// カメラの視線ベクトルを取得
-		XMVECTOR sightLine =XMVectorSetY(Camera::GetSightline(),0);
-
-		// コントローラーの情報を取得
-		XMFLOAT3 padStickL = Input::GetPadStickL();
-
-		// 方向を設定
-		XMVECTOR dir = XMVector3Normalize(XMVectorSet(padStickL.x,0,-padStickL.y,0));
-		dir = XMVector3Normalize(XMVector3Rotate(dir, sightLine));
-
-		// 速度を設定
-		float speed = 0.1f;
-
-		ImGui::Text("sightLine = %f,%f,%f", XMVectorGetX(sightLine), XMVectorGetY(sightLine), XMVectorGetZ(sightLine));
-		ImGui::Text("dir = %f,%f,%f", XMVectorGetX(dir), XMVectorGetY(dir), XMVectorGetZ(dir));
-
-		// 移動
-		Move(dir, speed);
-	}
-
 	// 移動処理
 	{
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
@@ -107,47 +85,6 @@ void Player::Update()
 		}
 	}
 	
-	// 接地処理
-	{
-		// ステージの情報を取得する
-		Stage* pStage = (Stage*)FindObject("Stage");
-		if (pStage == nullptr)return;
-		vector<StageObject*> objects = pStage->GetObjects();
-
-		vector<RayCastData> hitRays;
-
-		// ステージのオブジェクトすべてに対してあたり判定を行う
-		for (auto obj : objects) {
-
-			// レイキャストデータの初期化
-			RayCastData tmp; {
-				tmp.start = transform_.position_;
-				tmp.dir = XMFLOAT3(0, -1, 0);
-			}
-
-			// レイキャストを下方向に放つ
-			Model::RayCast(obj->GetModelHandle(), &tmp);
-			
-			// レイキャストが一度でもヒットしたらレイキャストを打つのをやめる
-			if (tmp.hit == true) { 
-				hitRays.push_back(tmp);
-			}
-		}
-		
-		for (auto ray : hitRays) {
-			ImGui::Text("%d.\n[hit] = %s\n[dist] = %f", ray.hitModelHandle, ray.hit ? "true" : "false", ray.dist);
-		}
-
-		// 最小の dist を持つ要素を探す
-		if (hitRays.empty() == false) {
-			auto min = std::min_element(hitRays.begin(), hitRays.end(), [](const RayCastData& a, const RayCastData& b) {return a.dist < b.dist; });
-			RayCastData hitmin = *min;
-
-			// 
-			if (hitmin.dist >= 0.1f) {
-			}
-		}
-	}
 }
 
 void Player::Draw()
