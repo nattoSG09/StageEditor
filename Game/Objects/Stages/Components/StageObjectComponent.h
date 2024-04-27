@@ -14,5 +14,6 @@ public:
 	virtual void Update() = 0;
 	virtual json Save() = 0;
 	virtual void DrawDatails(){}
+	virtual void OnCollision(GameObject* pTarget){}
 };
 

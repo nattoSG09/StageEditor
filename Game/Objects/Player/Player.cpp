@@ -16,6 +16,7 @@ void Player::Initialize()
 	modelHandle_ = Model::Load("Model/Player/Walking.fbx");
 	assert(modelHandle_ >= 0);
 
+	AddCollider(new SphereCollider(XMFLOAT3(0, 0, 0), 1.2f));
 }
 
 void Player::Update()

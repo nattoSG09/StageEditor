@@ -8,5 +8,6 @@ public:
 	void Initialize() override;
 	void Update() override;
 	json Save() override;
+	void OnCollision(GameObject* pTarget) override;;
 };
 
