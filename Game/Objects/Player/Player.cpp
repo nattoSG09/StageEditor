@@ -6,6 +6,10 @@
 #include "../../../Engine/GameObject/Camera.h"
 #include "../Stages/Stage.h"
 
+namespace {
+	const float TWEAK_CAM_ROT_NUM = 25.f;
+}
+
 Player::Player(GameObject* parent)
 	:GameObject(parent,"Player")
 {
@@ -29,7 +33,7 @@ void Player::Update()
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
 		
 		float angle = 0;
-		if(cam != nullptr)cam->GetAngle().y;
+		if(cam != nullptr)angle = cam->GetAngle().y;
 
 		// •ûŒü‚ğİ’è
 		XMVECTOR dir{}; {
@@ -39,26 +43,25 @@ void Player::Update()
 			// ‘O•û‚ÉˆÚ“®
 			if (Input::IsKey(DIK_W)) {
 				dir += sightline; isAnim = true;
-				transform_.rotate_.y = angle - 25;
-
+				transform_.rotate_.y = angle - TWEAK_CAM_ROT_NUM;
 			}
 
 			// Œã•û‚ÉˆÚ“®
 			if (Input::IsKey(DIK_S)) {
 				dir += -sightline; isAnim = true;
-				transform_.rotate_.y = (angle - 25) + 180;
+				transform_.rotate_.y = (angle - TWEAK_CAM_ROT_NUM) + 180;
 			}
 
 			// ¶•û‚ÉˆÚ“®
 			if (Input::IsKey(DIK_A)) {
 				dir += XMVector3Transform(sightline, XMMatrixRotationY(XMConvertToRadians(-90))); isAnim = true;
-				transform_.rotate_.y = (angle - 25) - 90;
+				transform_.rotate_.y = (angle - TWEAK_CAM_ROT_NUM) - 90;
 			}
 
 			// ‰E•û‚ÉˆÚ“®
 			if (Input::IsKey(DIK_D)) {
 				dir += XMVector3Transform(sightline, XMMatrixRotationY(XMConvertToRadians(90))); isAnim = true;
-				transform_.rotate_.y = (angle - 25) + 90;
+				transform_.rotate_.y = (angle - TWEAK_CAM_ROT_NUM) + 90;
 			}
 
 			// ³‹K‰»‚µ‚Ä
@@ -85,6 +88,7 @@ void Player::Update()
 		}
 	}
 	
+	ImGui::Text("has key = %s", hasKey_ ? "true" : "false");
 }
 
 void Player::Draw()

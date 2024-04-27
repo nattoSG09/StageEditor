@@ -10,6 +10,7 @@ const string ComponentTypeToString(ComponentType type)
 	case COMP_INPUTMOVE: return "InputMove";
 	case COMP_GRAVITY: return "Gravity";
 	case COMP_KEY: return "KeyComponent";
+	case COMP_PADLOCK: return "PadlockComponent";
 	}
 
 	return "none";

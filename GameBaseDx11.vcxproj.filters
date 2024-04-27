@@ -174,6 +174,8 @@
     <ClCompile Include="Game\Objects\Stages\Components\Gravity.cpp">
       <Filter>Game\Objects\Stages\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objects\Stages\Components\KeyComponent.cpp" />
+    <ClCompile Include="Game\Objects\Stages\Components\PadlockComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Collider\BoxCollider.h">
@@ -306,6 +308,8 @@
     <ClInclude Include="Game\Objects\Stages\Components\Gravity.h">
       <Filter>Game\Objects\Stages\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Objects\Stages\Components\KeyComponent.h" />
+    <ClInclude Include="Game\Objects\Stages\Components\PadlockComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

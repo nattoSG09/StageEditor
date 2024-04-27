@@ -5,6 +5,7 @@
 #include "Components/InputMove.h"
 #include "Components/Gravity.h"
 #include "Components/KeyComponent.h"
+#include "Components/PadlockComponent.h"
 
 #include "../../../Engine/ImGui/imgui.h"
 #include "../../../Engine/DirectX/Direct3D.h"
@@ -330,7 +331,8 @@ void Stage::DrawDatails()
 							case COMP_TESTMOVE:objects_[selectedIndex_]->AddComponent(new TestMove(objects_[selectedIndex_])); break;
 							case COMP_INPUTMOVE:objects_[selectedIndex_]->AddComponent(new InputMove(objects_[selectedIndex_])); break;
 							case COMP_GRAVITY:objects_[selectedIndex_]->AddComponent(new Gravity(objects_[selectedIndex_])); break;
-							case COMP_KEY:objects_[selectedIndex_]->AddComponent(new KeyComponent(objects_[selectedIndex_]));break;
+							case COMP_KEY:objects_[selectedIndex_]->AddComponent(new KeyComponent(objects_[selectedIndex_])); break;
+							case COMP_PADLOCK:objects_[selectedIndex_]->AddComponent(new PadlockComponent(objects_[selectedIndex_]));break;
 							case COMP_MAX:
 								break;
 							}
@@ -467,28 +469,18 @@ bool Stage::Load(string filePath)
 		// コンポ―ネントのロード
 		for (auto compData : data["components"]) {
 			ComponentType type = static_cast<ComponentType>(compData["type"]);
-			StageObjectComponent* comp = nullptr;
 
-			switch (type) {
-			case COMP_TESTMOVE:
-				comp = new TestMove(obj);
-				break;
-			case COMP_INPUTMOVE:
-				comp = new InputMove(obj);
-				break;
-			case COMP_GRAVITY:
-				comp = new Gravity(obj);
-
-			case COMP_KEY:
-				comp = new KeyComponent(obj);
-			default:
-				// 未知のコンポーネントタイプ
+			switch (type) 
+			{
+			case COMP_TESTMOVE:obj->AddComponent(new TestMove(obj)); break;
+			case COMP_INPUTMOVE:obj->AddComponent(new InputMove(obj)); break;
+			case COMP_GRAVITY:obj->AddComponent(new Gravity(obj)); break;
+			case COMP_KEY:obj->AddComponent(new KeyComponent(obj)); break;
+			case COMP_PADLOCK:obj->AddComponent(new PadlockComponent(obj)); break;
+			case COMP_MAX:
 				break;
 			}
 
-			if (comp != nullptr) {
-				obj->AddComponent(comp);
-			}
 		}
 
 		// オブジェクトをリストに追加

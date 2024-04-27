@@ -14,6 +14,7 @@ enum ComponentType {
 	COMP_INPUTMOVE,
 	COMP_GRAVITY,
 	COMP_KEY,
+	COMP_PADLOCK,
 	COMP_MAX
 };
 

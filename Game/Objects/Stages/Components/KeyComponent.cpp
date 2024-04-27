@@ -27,8 +27,13 @@ json KeyComponent::Save()
 
 void KeyComponent::OnCollision(GameObject* pTarget)
 {
+    // プレイヤーが`myObject_`に触れたら...
     if (pTarget->GetObjectName() == "Player") {
+        
+        // プレイヤーは`key`を取得
+        ((Player*)myObject->FindObject("Player"))->GetKey();
+
+        // ステージ上から`myObject_`を削除
         ((Stage*)myObject->FindObject("Stage"))->Delete(myObject);
-        ((Player*)((Stage*)myObject->FindObject("Player")))->GetKey();
     }
 }
