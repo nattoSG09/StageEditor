@@ -43,6 +43,4 @@ public:
 	int GetModelHandle() { return modelHandle_; }
 };
 
-
-
 StageObject* CreateStageObject(string name, string modelFilePath, GameObject* parent);

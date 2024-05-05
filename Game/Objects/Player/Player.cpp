@@ -28,10 +28,11 @@ void Player::Update()
 	// アニメーションを行うかどうか
 	bool isAnim = false;
 
+
 	// 移動処理
 	{
 		TPSCamera* cam = (TPSCamera*)FindObject("TPSCamera");
-		
+
 		float angle = 0;
 		if(cam != nullptr)angle = cam->GetAngle().y;
 

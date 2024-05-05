@@ -2,6 +2,7 @@
 #include "../../../../Engine/Collider/SphereCollider.h"
 #include "../../Player/Player.h"
 #include "../Stage.h"
+#include "../../../../Engine/ResourceManager/VFX.h"
 
 PadlockComponent::PadlockComponent(StageObject* myObj)
 	:StageObjectComponent(myObj,"PadlockComponent")
@@ -29,6 +30,6 @@ void PadlockComponent::OnCollision(GameObject* pTarget)
 {
     if (pTarget->GetObjectName() == "Player") {
         ((Player*)myObject->FindObject("Player"))->LostKey();
-
+        
     }
 }
